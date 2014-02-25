@@ -1,5 +1,6 @@
-# Takes a file CSV file called "data.csv" and outputs each row as a numbered YAML file.
+# Takes a file CSV file called "data.csv" and outputs each row as a YAML file named after first column.
 # Data in the first row of the CSV is assumed to be the column heading.
+# Original work borrowed from: https://github.com/hfionte/csv_to_yaml
 
 # Import the python library for parsing CSV files.
 import csv
@@ -22,8 +23,8 @@ for row_index, row in enumerate(datareader):
 
 	# Othrwise, create a YAML file from the data in this row...
 	else:
-		# Open a new file with filename based on index number of our current row.
-		filename = str(row_index) + '.yml'
+		# Open a new file with filename based on the first column
+		filename = row[0].lower().replace(" ", "_") + '.yml'
 		new_yaml = open(filename, 'w')
 
 		# Empty string that we will fill with YAML formatted text based on data extracted from our CSV.
